@@ -8,10 +8,13 @@ pipeline {
     }
     stage ('build') {
       steps {
-       sh '''mvn test'''          
+       sh '''mvn clean install'''          
       }
     }
-    
+    stage ( 'deploy' ) {
+      steps {
+        sshagent(['slave-tomcat']) {
+      sh '''scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Build-Deploy-Test/helloworld/1project/dist/*.war ec2-user@172.31.37.18:/opt/tomcat9/webapps''' 
     
   }
 }
