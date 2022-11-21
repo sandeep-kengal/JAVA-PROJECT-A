@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage ('git') {
       steps {
-        git branch: 'main', url: 
+        git branch: 'main', url:'https://github.com/sandeep-kengal/JAVA-PROJECT-A.git'
       }
     }
     stage ('build') {
